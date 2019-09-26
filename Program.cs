@@ -9,7 +9,7 @@ namespace mazerunner
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello World!");
-            string[] directions = new string[] { "N", "N", "N", "W", "W" };
+            string[] directions = new string[] { "N", "N", "N", "N", "N", "E", "E", "E", "E", "E" };
             int[,] maze = new int[,] {
                 {1, 1, 1, 1, 1, 1, 1},
                 {1, 0, 0, 0, 0, 0, 3},
@@ -36,6 +36,7 @@ namespace mazerunner
                     if (maze[y, x] == 2) { startX = x; startY = y; }
                 }
             }
+
             for (int x = 0; x < directions.Length; x++)
             {
                 switch (directions[x])
@@ -45,10 +46,11 @@ namespace mazerunner
                     case "S": startY += 1; break;
                     case "W": startX -= 1; break;
                 }
-                if (startY < 0 || startY > len - 1 || startX < 0 || startX > len - 1 || maze[startY, startX] == 1) { return "Dead"; }
-                if (maze[startY, startX] == 3) { return "Finish"; }
+                WriteLine($"startY is {startY} and startX is {startX}");
+                if (startY < 0 || startY > len - 1 || startX < 0 || startX > len - 1 || maze[startY, startX] == 1) { WriteLine("dEAD"); return "Dead"; }
+                if (maze[startY, startX] == 3) { WriteLine("Finish"); return "Finish"; }
             }
-
+            WriteLine("Lost");
             return "Lost";
         }
     }
